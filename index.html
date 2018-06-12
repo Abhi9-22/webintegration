@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<link rel="manifest" href="/manifest.json">
+		<script type="text/javascript">
+     var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[]};
+ // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+ clevertap.account.push({"id": "4W7-4W9-6R5Z"});
+ (function () {
+		 var wzrk = document.createElement('script');
+		 wzrk.type = 'text/javascript';
+		 wzrk.async = true;
+		 wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+		 var s = document.getElementsByTagName('script')[0];
+		 s.parentNode.insertBefore(wzrk, s);
+  })();
+
+clevertap.onUserLogin.push({
+ "Site": {
+   "Name": "Sagar",            // String             
+   "Email": "sagar@gmail.com",         // Email address of the user
+   "Phone": "+14155551234",           // Phone (with the country code)
+   "Gender": "M",                     // Can be either M or F
+   "Employed": "Y",                   // Can be either Y or N
+   "Education": "Graduate",           // Can be either School, College or Graduate
+   "Married": "Y",                    // Can be either Y or N
+   "DOB": new Date(),                 // Date of Birth. Date object
+   "Age": 27,                         // Not required if DOB is set
+
+// optional fields. controls whether the user will be sent email, push etc.
+   "MSG-email": true,                // Disable email notifications
+   "MSG-push": true,                  // Enable push notifications
+   "MSG-sms": true                    // Enable sms notifications
+ }
+});
+
+clevertap.event.push("Added To Cart", {
+    "Product name": "Macbook Air",
+    "Category": "Laptop",
+    "Price": 44000,
+    "Date": new Date()
+});
+
+// defining a custom rendering listener
+clevertap.notificationCallback = function(msg){
+      //raise the notification viewed and clicked events in the callback
+      clevertap.raiseNotificationViewed();
+      console.log(JSON.stringify(msg));//your custom rendering implementation here
+      var $button = jQuery("<button></button>");//element on whose click you want to raise the notification clicked event
+      $button.click(function(){
+         clevertap.raiseNotificationClicked();
+      });
+};
+
+
+clevertap.notifications.push({
+    "titleText":'Would you like to receive Push Notifications?',
+    "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+    "okButtonText":'Sign me up!',
+    "rejectButtonText":'No thanks',
+    "okButtonColor":'#f28046'});
+
+</script>
+	</head>
+	<body>
+		<h1>My site works</h1>
+			<form>
+  				First name:<br>
+  				<input type="text" name="firstname"><br>
+  				Last name:<br>
+  				<input type="text" name="lastname"><br>
+  				<input type="submit" value="Submit">
+			</form>
+
+
+	</body>
+</html>
